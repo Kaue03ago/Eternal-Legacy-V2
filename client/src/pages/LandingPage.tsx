@@ -231,7 +231,7 @@ export default function LandingPage() {
                 </li>
                 <li className="flex items-center gap-2 text-sm text-muted-foreground">
                   <CheckCircle2 className="w-4 h-4 text-accent" />
-                  Até 10 mensagens
+                  Até 10 mensagens (áudios e vídeos)
                 </li>
                 <li className="flex items-center gap-2 text-sm text-muted-foreground">
                   <CheckCircle2 className="w-4 h-4 text-accent" />
@@ -239,11 +239,11 @@ export default function LandingPage() {
                 </li>
                 <li className="flex items-center gap-2 text-sm text-muted-foreground">
                   <CheckCircle2 className="w-4 h-4 text-accent" />
-                  1 Guardião
+                  Até 3 Guardiões
                 </li>
                 <li className="flex items-center gap-2 text-sm text-muted-foreground">
                   <CheckCircle2 className="w-4 h-4 text-accent" />
-                  Preservação por 10 anos
+                  Preservação por 10 anos 
                 </li>
               </ul>
               <Button className="w-full bg-accent text-accent-foreground hover:bg-accent/90">Começar</Button>
@@ -269,20 +269,20 @@ export default function LandingPage() {
                 </li>
                 <li className="flex items-center gap-2 text-sm text-muted-foreground">
                   <CheckCircle2 className="w-4 h-4 text-accent" />
-                  Até 30 mensagens + 10 vídeos
+                  Até 30 mensagens
                 </li>
                 <li className="flex items-center gap-2 text-sm text-muted-foreground">
                   <CheckCircle2 className="w-4 h-4 text-accent" />
                   Armazenamento: 25 GB
                 </li>
-                <li className="flex items-center gap-2 text-sm text-muted-foreground">
+                {/* <li className="flex items-center gap-2 text-sm text-muted-foreground">
                   <CheckCircle2 className="w-4 h-4 text-accent" />
                   Até 3 destinatários
-                </li>
-                <li className="flex items-center gap-2 text-sm text-muted-foreground">
+                </li> */}
+                {/* <li className="flex items-center gap-2 text-sm text-muted-foreground">
                   <CheckCircle2 className="w-4 h-4 text-accent" />
                   Mensagens temáticas automáticas
-                </li>
+                </li> */}
               </ul>
               <Button className="w-full bg-accent text-accent-foreground hover:bg-accent/90">Começar</Button>
             </div>
@@ -302,11 +302,7 @@ export default function LandingPage() {
                 </li>
                 <li className="flex items-center gap-2 text-sm text-muted-foreground">
                   <CheckCircle2 className="w-4 h-4 text-accent" />
-                  Documentário digital (até 20 min)
-                </li>
-                <li className="flex items-center gap-2 text-sm text-muted-foreground">
-                  <CheckCircle2 className="w-4 h-4 text-accent" />
-                  Narração com voz real ou IA
+                  Até 50 mensagens
                 </li>
                 <li className="flex items-center gap-2 text-sm text-muted-foreground">
                   <CheckCircle2 className="w-4 h-4 text-accent" />
@@ -318,17 +314,17 @@ export default function LandingPage() {
                 </li>
                 <li className="flex items-center gap-2 text-sm text-muted-foreground">
                   <CheckCircle2 className="w-4 h-4 text-accent" />
-                  Acesso vitalício*
+                  Preservação por 25 anos
                 </li>
               </ul>
               <Button className="w-full bg-accent text-accent-foreground hover:bg-accent/90">Começar</Button>
             </div>
           </div>
-          <div className="mt-12 bg-card/50 border border-border rounded-lg p-6 max-w-3xl mx-auto text-center">
+          {/* <div className="mt-12 bg-card/50 border border-border rounded-lg p-6 max-w-3xl mx-auto text-center">
             <p className="text-sm text-muted-foreground">
               * <strong>Acesso vitalício</strong> refere-se ao acesso contínuo dos destinatários ao conteúdo enquanto o serviço estiver ativo e a conta estiver regular.
             </p>
-          </div>
+          </div> */}
         </div>
       </section>
 

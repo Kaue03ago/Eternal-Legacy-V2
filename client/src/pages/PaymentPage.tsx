@@ -153,7 +153,7 @@ export default function PaymentPage() {
                     </li>
                     <li className="flex items-center gap-2 text-sm text-muted-foreground">
                       <CheckCircle2 className="w-4 h-4 text-accent" />
-                      Até 10 mensagens
+                      Até 10 mensagens (áudios e vídeos)
                     </li>
                     <li className="flex items-center gap-2 text-sm text-muted-foreground">
                       <CheckCircle2 className="w-4 h-4 text-accent" />
@@ -169,7 +169,7 @@ export default function PaymentPage() {
                     </li>
                     <li className="flex items-center gap-2 text-sm text-muted-foreground">
                       <CheckCircle2 className="w-4 h-4 text-accent" />
-                      Até 30 mensagens + 10 vídeos
+                      Até 30 mensagens
                     </li>
                     <li className="flex items-center gap-2 text-sm text-muted-foreground">
                       <CheckCircle2 className="w-4 h-4 text-accent" />

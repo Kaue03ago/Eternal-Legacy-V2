@@ -11,7 +11,7 @@ const plans = [
     annualPrice: 249,
     features: [
       "Cofre digital criptografado",
-      "Até 10 mensagens (texto, áudio ou vídeo)",
+      "Até 10 mensagens (áudios e vídeos)",
       "Armazenamento incluído: 10 GB",
       "1 guardião",
       "Entrega pós-morte automática",
@@ -27,10 +27,10 @@ const plans = [
     features: [
       "Tudo do Essência",
       "Roteiros emocionais guiados",
-      "Até 30 mensagens + 10 vídeos",
+      "Até 30 mensagens",
       "Armazenamento incluído: 25 GB",
       "Até 3 destinatários",
-      "Mensagens temáticas automáticas (aniversários/datas especiais)"
+      // "Mensagens temáticas automáticas (aniversários/datas especiais)"
     ],
     highlighted: true,
   },
@@ -42,7 +42,7 @@ const plans = [
     features: [
       "Tudo do Legado",
       "Documentário digital completo (até 20 minutos)",
-      "Narração com voz real ou IA",
+      "Até 50 mensagens",
       "Armazenamento incluído: 50 GB",
       "Entregas programadas por evento, data ou idade",
       "Acesso vitalício para destinatários*"
