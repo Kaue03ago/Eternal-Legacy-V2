@@ -36,8 +36,16 @@ export default function SignupStep1() {
       alert("Você deve concordar com os Termos de Serviço e Política de Privacidade.");
       return;
     }
-    // Store data in sessionStorage for next step
-    sessionStorage.setItem("signupData", JSON.stringify(formData));
+
+    // Salva apenas o que você realmente precisa pro MVP (sem senha)
+    const draft = {
+      fullName: formData.fullName.trim(),
+      email: formData.email.trim().toLowerCase(),
+      agreedToTerms: true,
+      createdAt: new Date().toISOString(),
+    };
+
+    sessionStorage.setItem("leadDraft", JSON.stringify(draft));
     setLocation("/signup/step2");
   };
 

@@ -26,9 +26,9 @@ export default function SignupStep2() {
   };
 
   const handleFinish = () => {
-    const signupData = sessionStorage.getItem("signupData");
-    if (!signupData) {
-      alert("Dados de cadastro não encontrados. Por favor, comece novamente.");
+    const signupData =
+      sessionStorage.getItem("signupData") || sessionStorage.getItem("leadDraft"); if (!signupData) {
+        alert("Dados de cadastro não encontrados. Por favor, comece novamente.");
       setLocation("/signup/step1");
       return;
     }
@@ -41,32 +41,36 @@ export default function SignupStep2() {
     }
 
     // Store complete data
-    const completeData = {
-      ...JSON.parse(signupData),
-      guardians: validGuardians,
-      inactivityPeriod,
+    const base = JSON.parse(signupData);
+
+    // salva somente o que importa pro MVP (sem guardiões)
+    const leadDraft = {
+      fullName: base.fullName,
+      email: base.email,
     };
-    sessionStorage.setItem("completeSignupData", JSON.stringify(completeData));
+
+    sessionStorage.setItem("leadDraft", JSON.stringify(leadDraft));
     
     // Go to pricing page
     setLocation("/pricing");
   };
 
   const handleContinueWithoutGuardian = () => {
-    const signupData = sessionStorage.getItem("signupData");
-    if (!signupData) {
-      alert("Dados de cadastro não encontrados. Por favor, comece novamente.");
+    const signupData =
+      sessionStorage.getItem("signupData") || sessionStorage.getItem("leadDraft"); if (!signupData) {
+        alert("Dados de cadastro não encontrados. Por favor, comece novamente.");
       setLocation("/signup/step1");
       return;
     }
 
-    // Store complete data without guardians
-    const completeData = {
-      ...JSON.parse(signupData),
-      guardians: [],
-      inactivityPeriod,
+    const base = JSON.parse(signupData);
+
+    const leadDraft = {
+      fullName: base.fullName,
+      email: base.email,
     };
-    sessionStorage.setItem("completeSignupData", JSON.stringify(completeData));
+
+    sessionStorage.setItem("leadDraft", JSON.stringify(leadDraft));
     
     // Go to pricing page
     setLocation("/pricing");

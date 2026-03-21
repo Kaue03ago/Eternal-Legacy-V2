@@ -67,14 +67,26 @@ export default function PricingPage() {
   };
 
   const handlePayment = () => {
-    // Store selected plan
-    const completeData = sessionStorage.getItem("completeSignupData");
-    if (completeData) {
-      const data = JSON.parse(completeData);
-      data.selectedPlan = selectedPlan;
-      data.billingCycle = billingCycle;
-      sessionStorage.setItem("completeSignupData", JSON.stringify(data));
+    // Pega o draft que veio do Step2 (nome + email)
+    const raw = sessionStorage.getItem("leadDraft");
+    if (!raw) {
+      alert("Dados de cadastro não encontrados. Por favor, comece novamente.");
+      setLocation("/signup/step1");
+      return;
     }
+
+    const draft = JSON.parse(raw);
+
+    // Atualiza com plano escolhido
+    const updatedDraft = {
+      ...draft,
+      selectedPlan,
+      billingCycle,
+      updatedAt: new Date().toISOString(),
+    };
+
+    sessionStorage.setItem("leadDraft", JSON.stringify(updatedDraft));
+
     // Go to payment page
     setLocation("/payment");
   };
@@ -208,7 +220,7 @@ export default function PricingPage() {
         <div className="flex gap-4 max-w-2xl mx-auto">
           <Button
             variant="outline"
-            onClick={() => setLocation("/signup-step-2")}
+            onClick={() => setLocation("/signup/step2")}
             className="flex-1 text-foreground border-border hover:bg-card"
           >
             &lt; Voltar

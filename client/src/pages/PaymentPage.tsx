@@ -8,14 +8,35 @@ export default function PaymentPage() {
   const [planData, setPlanData] = useState<any>(null);
 
   useEffect(() => {
-    const completeData = sessionStorage.getItem("completeSignupData");
-    if (completeData) {
-      const data = JSON.parse(completeData);
+    const raw = sessionStorage.getItem("leadDraft");
+    if (raw) {
+      const data = JSON.parse(raw);
       setPlanData(data);
     }
   }, []);
 
-  const handleConfirmPayment = () => {
+  const handleConfirmPayment = async () => {
+    const triggerUrl = import.meta.env.VITE_LEAD_TRIGGER_URL as string | undefined;
+
+    const payload = {
+      fullName: planData?.fullName,
+      email: planData?.email,
+      selectedPlan: planData?.selectedPlan,
+      billingCycle: planData?.billingCycle,
+      createdAt: new Date().toISOString(),
+      source: "mvp_payment_click",
+    };
+
+    if (triggerUrl) {
+      await fetch(triggerUrl, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      }).catch(() => { });
+    } else {
+      console.warn("VITE_LEAD_TRIGGER_URL não configurada");
+    }
+
     setLocation("/waitlist");
   };
 
@@ -100,7 +121,7 @@ export default function PaymentPage() {
                 <div className="bg-background rounded p-4 space-y-3">
                   <div className="flex justify-between">
                     <span className="text-sm text-muted-foreground">Nome</span>
-                    <span className="text-sm text-foreground font-medium">{planData.nome}</span>
+                    <span className="text-sm text-foreground font-medium">{planData.fullName}</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-sm text-muted-foreground">Email</span>
@@ -108,7 +129,8 @@ export default function PaymentPage() {
                   </div>
                   <div className="flex justify-between">
                     <span className="text-sm text-muted-foreground">Guardiões</span>
-                    <span className="text-sm text-foreground font-medium">{planData.guardians?.length || 0}</span>
+                    {/* <span className="text-sm text-foreground font-medium">{planData.guardians?.length || 0}</span> */}
+                    <span className="text-sm text-foreground font-medium">0</span>
                   </div>
                 </div>
               </div>
