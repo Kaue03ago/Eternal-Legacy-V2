@@ -80,8 +80,12 @@ export default function SecurityPage() {
       <nav className="border-b border-border bg-card/50 backdrop-blur sticky top-0 z-50">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-full bg-accent"></div>
-            <span className="text-xl font-bold text-foreground">Eternal Legacy</span>
+          <img
+            src="/favicon.png"
+            alt="Eternal Legacy"
+            className="w-14 h-14 rounded-full object-cover"
+          />
+          <span className="text-xl font-bold text-foreground">Eternal Legacy</span>
           </div>
           <div className="hidden md:flex items-center gap-8">
             <a href="/#como-funciona" className="text-sm text-muted-foreground hover:text-foreground transition">Como Funciona</a>

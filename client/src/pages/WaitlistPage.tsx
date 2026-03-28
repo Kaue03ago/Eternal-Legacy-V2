@@ -37,8 +37,12 @@ export default function WaitlistPage() {
         {/* Header */}
         <div className="mb-8">
           <div className="flex items-center gap-2 mb-6">
-            <div className="w-8 h-8 rounded-full bg-accent"></div>
-            <span className="text-xl font-bold text-foreground">EternaLegacy</span>
+          <img
+            src="/favicon.png"
+            alt="Eternal Legacy"
+            className="w-14 h-14 rounded-full object-cover"
+          />
+          <span className="text-xl font-bold text-foreground">EternaLegacy</span>
           </div>
         </div>
 
