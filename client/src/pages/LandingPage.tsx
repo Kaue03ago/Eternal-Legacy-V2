@@ -250,7 +250,9 @@ export default function LandingPage() {
                   Preservação por 10 anos 
                 </li> */}
               </ul>
-              <Button className="w-full bg-accent text-accent-foreground hover:bg-accent/90">Começar</Button>
+              <Button className="w-full bg-accent text-accent-foreground hover:bg-accent/90"
+                onClick={() => setLocation("/signup/step1")}
+              >Começar</Button>
             </div>
 
             {/* Legado Plan (Featured) */}
@@ -288,7 +290,9 @@ export default function LandingPage() {
                   Mensagens temáticas automáticas
                 </li> */}
               </ul>
-              <Button className="w-full bg-accent text-accent-foreground hover:bg-accent/90">Começar</Button>
+              <Button className="w-full bg-accent text-accent-foreground hover:bg-accent/90"
+                  onClick={() => setLocation("/signup/step1")}
+              >Começar</Button>
             </div>
 
             {/* Eternidade Plan */}
@@ -321,7 +325,9 @@ export default function LandingPage() {
                   Preservação por 25 anos
                 </li> */}
               </ul>
-              <Button className="w-full bg-accent text-accent-foreground hover:bg-accent/90">Começar</Button>
+              <Button className="w-full bg-accent text-accent-foreground hover:bg-accent/90"
+                onClick={() => setLocation("/signup/step1")}
+              >Começar</Button>
             </div>
           </div>
           {/* <div className="mt-12 bg-card/50 border border-border rounded-lg p-6 max-w-3xl mx-auto text-center">
@@ -357,13 +363,33 @@ export default function LandingPage() {
         </div>
       </section>
 
+            {/* Who We Are Section */}
+      <section id="quem-somos" className="py-20 border-b border-border bg-card/30">
+        <div className="container mx-auto px-4 max-w-4xl">
+          <h2 className="text-3xl md:text-4xl font-bold mb-8 text-foreground">Quem Somos</h2>
+
+          <div className="bg-background border border-border rounded-lg p-10">
+            <p className="text-lg text-muted-foreground leading-relaxed">
+              Somos o Eternal Legacy — um cofre digital criado para preservar memórias, mensagens e documentos com privacidade, segurança e entrega no momento certo.
+              Nosso objetivo é transformar o legado digital em algo simples, confiável e humano, para que aquilo que importa continue existindo para quem você ama.
+            </p>
+
+            <p className="text-lg text-muted-foreground leading-relaxed mt-4">
+              Contato: yourlegacy0001@gmail.com
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* Footer */}
       <footer className="bg-card border-t border-border py-12">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-8">
             <div>
               <h4 className="font-semibold text-foreground mb-4">Sobre Nós</h4>
-              <a href="#" className="text-muted-foreground hover:text-foreground transition text-sm block">Quem Somos</a>
+              <a href="#quem-somos" className="text-muted-foreground hover:text-foreground transition text-sm block">
+                Quem Somos
+              </a>
             </div>
             <div>
               <h4 className="font-semibold text-foreground mb-4">Contato</h4>
