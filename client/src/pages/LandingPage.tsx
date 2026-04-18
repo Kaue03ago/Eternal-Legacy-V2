@@ -38,7 +38,7 @@ export default function LandingPage() {
       <section className="py-20 md:py-32 bg-gradient-to-b from-card/50 to-background">
         <div className="container mx-auto px-4 text-center max-w-4xl">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-foreground leading-tight">
-            Nem tudo termina quando a vida termina.
+            Nem tudo acaba quando a vida termina.
           </h1>
           <p className="text-lg md:text-xl text-muted-foreground mb-8 leading-relaxed">
             Há palavras, lembranças e escolhas que merecem chegar a quem você ama — no momento certo.
@@ -363,23 +363,40 @@ export default function LandingPage() {
         </div>
       </section>
 
-            {/* Who We Are Section */}
+      {/* Who We Are Section */}
       <section id="quem-somos" className="py-20 border-b border-border bg-card/30">
         <div className="container mx-auto px-4 max-w-4xl">
-          <h2 className="text-3xl md:text-4xl font-bold mb-8 text-foreground">Quem Somos</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-8 text-foreground">
+            Quem Somos
+          </h2>
 
           <div className="bg-background border border-border rounded-lg p-10">
-            <p className="text-lg text-muted-foreground leading-relaxed">
-              Somos o Eternal Legacy — um cofre digital criado para preservar memórias, mensagens e documentos com privacidade, segurança e entrega no momento certo.
-              Nosso objetivo é transformar o legado digital em algo simples, confiável e humano, para que aquilo que importa continue existindo para quem você ama.
-            </p>
+            <div className="space-y-6">
+              <p className="text-lg text-muted-foreground leading-relaxed">
+                Somos o Eternal Legacy — um cofre digital criado para preservar memórias, mensagens e documentos com privacidade,
+                segurança e entrega no momento certo. Nosso objetivo é transformar o legado digital em algo simples, confiável e
+                humano, para que aquilo que importa continue existindo para quem você ama.
+              </p>
 
-            <p className="text-lg text-muted-foreground leading-relaxed mt-4">
-              Contato: yourlegacy0001@gmail.com
-            </p>
+              <div className="flex justify-center">
+                <Button
+                  onClick={() =>
+                    window.open(
+                      "https://docs.google.com/forms/d/e/1FAIpQLSf5yTKVQt6tPFNQR2L9POXq9i6S2yA6Mo9J-L8pxdUQKTBH0Q/viewform?usp=publish-editor",
+                      "_blank",
+                      "noopener,noreferrer"
+                    )
+                  }
+                  className="bg-accent text-accent-foreground hover:bg-accent/90"
+                >
+                  Fale Conosco
+                </Button>
+              </div>
+            </div>
           </div>
         </div>
       </section>
+
 
       {/* Footer */}
       <footer className="bg-card border-t border-border py-12">
