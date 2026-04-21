@@ -166,7 +166,11 @@ export default function SignupStep1() {
                 className="mt-1 w-4 h-4 bg-background border border-border rounded cursor-pointer accent-accent"
               />
               <label className="text-sm text-muted-foreground">
-                Eu concordo com os <a href="#" className="text-accent hover:underline">Termos de Serviço</a> e a <a href="#" className="text-accent hover:underline">Política de Privacidade</a>.
+                Eu concordo com os
+                <a onClick={() => setLocation("/terms")} className="ml-1 text-accent hover:underline cursor-pointer">Termos de Serviço</a>
+                {' '}
+                e a
+                <a onClick={() => setLocation("/privacy")} className="ml-1 text-accent hover:underline cursor-pointer">Política de Privacidade</a>.
               </label>
             </div>
 

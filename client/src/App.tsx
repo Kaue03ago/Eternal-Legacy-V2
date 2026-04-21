@@ -1,6 +1,8 @@
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/NotFound";
+import Privacy from "./pages/Privacy";
+import Terms from "./pages/Terms";
 import { Route, Switch } from "wouter";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
@@ -19,6 +21,8 @@ function Router() {
       <Route path={"/security"} component={SecurityPage} />
       <Route path={"/signup/step1"} component={SignupStep1} />
       <Route path={"/signup/step2"} component={SignupStep2} />
+      <Route path={"/terms"} component={Terms} />
+      <Route path={"/privacy"} component={Privacy} />
       <Route path={"/pricing"} component={PricingPage} />
       <Route path={"/payment"} component={PaymentPage} />
       <Route path={"/waitlist"} component={WaitlistPage} />

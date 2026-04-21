@@ -379,18 +379,10 @@ export default function LandingPage() {
               </p>
 
               <div className="flex justify-center">
-                <Button
-                  onClick={() =>
-                    window.open(
-                      "https://docs.google.com/forms/d/e/1FAIpQLSf5yTKVQt6tPFNQR2L9POXq9i6S2yA6Mo9J-L8pxdUQKTBH0Q/viewform?usp=publish-editor",
-                      "_blank",
-                      "noopener,noreferrer"
-                    )
-                  }
-                  className="bg-accent text-accent-foreground hover:bg-accent/90"
-                >
-                  Fale Conosco
-                </Button>
+                <div className="text-center">
+                  <p className="text-lg text-muted-foreground">Entre em contato conosco pelo e-mail:</p>
+                  <a href="mailto:contato@eternalegacy.pro" className="text-accent font-medium hover:underline">contato@eternalegacy.pro</a>
+                </div>
               </div>
             </div>
           </div>
