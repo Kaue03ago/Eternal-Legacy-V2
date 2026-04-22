@@ -70,9 +70,11 @@ export default function PaymentPage() {
           <img
             src="/favicon.png"
             alt="Eternal Legacy"
-            className="w-14 h-14 rounded-full object-cover"
+            onClick={() => setLocation("/")}
+            role="button"
+            className="w-14 h-14 rounded-full object-cover cursor-pointer"
           />
-          <span className="text-xl font-bold text-foreground">Eternal Legacy</span>
+          <span onClick={() => setLocation("/")} role="button" className="text-xl font-bold text-foreground cursor-pointer">Eternal Legacy</span>
         </div>
       </div>
 
@@ -191,7 +193,7 @@ export default function PaymentPage() {
                   <>
                     <li className="flex items-center gap-2 text-sm text-muted-foreground">
                       <CheckCircle2 className="w-4 h-4 text-accent" />
-                      Tudo do Essência
+                      Tudo do Essência +
                     </li>
                     <li className="flex items-center gap-2 text-sm text-muted-foreground">
                       <CheckCircle2 className="w-4 h-4 text-accent" />
@@ -207,7 +209,7 @@ export default function PaymentPage() {
                   <>
                     <li className="flex items-center gap-2 text-sm text-muted-foreground">
                       <CheckCircle2 className="w-4 h-4 text-accent" />
-                      Tudo do Legado
+                      Tudo do Legado +
                     </li>
                     <li className="flex items-center gap-2 text-sm text-muted-foreground">
                       <CheckCircle2 className="w-4 h-4 text-accent" />
@@ -220,13 +222,6 @@ export default function PaymentPage() {
                   </>
                 )}
               </ul>
-            </div>
-
-            {/* Important Note */}
-            <div className="bg-card/50 border border-border rounded-lg p-4 mb-8">
-              <p className="text-xs text-muted-foreground leading-relaxed">
-                Ao confirmar, você concorda com nossos <span className="text-accent font-semibold">Termos de Serviço</span> e <span className="text-accent font-semibold">Política de Privacidade</span>. O pagamento será processado de forma segura.
-              </p>
             </div>
           </div>
 

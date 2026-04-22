@@ -25,7 +25,7 @@ const plans = [
     monthlyPrice: 39.90,
     annualPrice: 399,
     features: [
-      "Tudo do Essência",
+      "Tudo do Essência +",
       "Roteiros emocionais guiados",
       "Até 30 mensagens",
       "Armazenamento incluído: 25 GB",
@@ -40,7 +40,7 @@ const plans = [
     monthlyPrice: 69.90,
     annualPrice: 699,
     features: [
-      "Tudo do Legado",
+      "Tudo do Legado +",
       "Documentário digital completo (até 20 minutos)",
       "Até 50 mensagens",
       "Armazenamento incluído: 50 GB",
@@ -102,9 +102,11 @@ export default function PricingPage() {
           <img
             src="/favicon.png"
             alt="Eternal Legacy"
-            className="w-14 h-14 rounded-full object-cover"
+            onClick={() => setLocation("/")}
+            role="button"
+            className="w-14 h-14 rounded-full object-cover cursor-pointer"
           />
-          <span className="text-xl font-bold text-foreground">Eternal Legacy</span>
+          <span onClick={() => setLocation("/")} role="button" className="text-xl font-bold text-foreground cursor-pointer">Eternal Legacy</span>
         </div>
       </div>
 

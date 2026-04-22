@@ -83,9 +83,11 @@ export default function SecurityPage() {
           <img
             src="/favicon.png"
             alt="Eternal Legacy"
-            className="w-14 h-14 rounded-full object-cover"
+            onClick={() => setLocation("/")}
+            role="button"
+            className="w-14 h-14 rounded-full object-cover cursor-pointer"
           />
-          <span className="text-xl font-bold text-foreground">Eternal Legacy</span>
+          <span onClick={() => setLocation("/")} role="button" className="text-xl font-bold text-foreground cursor-pointer">Eternal Legacy</span>
           </div>
           <div className="hidden md:flex items-center gap-8">
             <a href="/#como-funciona" className="text-sm text-muted-foreground hover:text-foreground transition">Como Funciona</a>

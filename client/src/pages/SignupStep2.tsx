@@ -85,9 +85,11 @@ export default function SignupStep2() {
           <img
             src="/favicon.png"
             alt="Eternal Legacy"
-            className="w-14 h-14 rounded-full object-cover"
+            onClick={() => setLocation("/")}
+            role="button"
+            className="w-14 h-14 rounded-full object-cover cursor-pointer"
           />
-          <span className="text-xl font-bold text-foreground">EternaLegacy</span>
+          <span onClick={() => setLocation("/")} role="button" className="text-xl font-bold text-foreground cursor-pointer">EternaLegacy</span>
           </div>
         </div>
 

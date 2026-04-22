@@ -28,6 +28,12 @@ export default function SignupStep1() {
       alert("Por favor, preencha todos os campos.");
       return;
     }
+    const isPasswordValid = (pw: string) => /(?=.*[A-Z])(?=.*\d).{8,}/.test(pw);
+
+    if (!isPasswordValid(formData.password)) {
+      alert("A senha precisa ter pelo menos 8 caracteres, 1 letra maiúscula e 1 número.");
+      return;
+    }
     if (formData.password !== formData.confirmPassword) {
       alert("As senhas não coincidem.");
       return;
@@ -53,14 +59,16 @@ export default function SignupStep1() {
     <div className="min-h-screen bg-background text-foreground flex items-center justify-center p-4">
       <div className="w-full max-w-md">
         {/* Header */}
-        <div className="mb-8">
+          <div className="mb-8">
           <div className="flex items-center gap-2 mb-6">
           <img
             src="/favicon.png"
             alt="Eternal Legacy"
-            className="w-14 h-14 rounded-full object-cover"
+            onClick={() => setLocation("/")}
+            role="button"
+            className="w-14 h-14 rounded-full object-cover cursor-pointer"
           />
-          <span className="text-xl font-bold text-foreground">EternaLegacy</span>
+          <span onClick={() => setLocation("/")} role="button" className="text-xl font-bold text-foreground cursor-pointer">EternaLegacy</span>
           </div>
         </div>
 

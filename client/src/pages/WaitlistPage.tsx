@@ -86,24 +86,8 @@ export default function WaitlistPage() {
 
           {/* Social Sharing */}
           <div className="mb-8 border-t border-border pt-6">
-            <p className="text-sm font-medium text-foreground mb-4">Conhece alguém que também valorizaria isso?</p>
+            <p className="text-sm font-medium text-foreground mb-4">Compartilhe seu interesse</p>
             <div className="flex gap-3 justify-center">
-              <button
-                onClick={handleShareTwitter}
-                className="flex items-center gap-2 px-3 py-2 bg-background border border-border rounded hover:border-accent transition text-sm text-foreground"
-                title="Compartilhar no X (Twitter)"
-              >
-                <Share2 className="w-4 h-4" />
-                X
-              </button>
-              <button
-                onClick={handleShareLinkedIn}
-                className="flex items-center gap-2 px-3 py-2 bg-background border border-border rounded hover:border-accent transition text-sm text-foreground"
-                title="Compartilhar no LinkedIn"
-              >
-                <Share2 className="w-4 h-4" />
-                LinkedIn
-              </button>
               <button
                 onClick={handleCopyLink}
                 className="flex items-center gap-2 px-3 py-2 bg-background border border-border rounded hover:border-accent transition text-sm text-foreground"

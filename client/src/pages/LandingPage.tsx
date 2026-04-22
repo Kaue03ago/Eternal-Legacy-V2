@@ -267,7 +267,7 @@ export default function LandingPage() {
               <ul className="space-y-3 mb-8 flex-grow">
                 <li className="flex items-center gap-2 text-sm text-muted-foreground">
                   <CheckCircle2 className="w-4 h-4 text-accent" />
-                  Tudo do Essência
+                  Tudo do Essência +
                 </li>
                 <li className="flex items-center gap-2 text-sm text-muted-foreground">
                   <CheckCircle2 className="w-4 h-4 text-accent" />
@@ -306,7 +306,7 @@ export default function LandingPage() {
               <ul className="space-y-3 mb-8 flex-grow">
                 <li className="flex items-center gap-2 text-sm text-muted-foreground">
                   <CheckCircle2 className="w-4 h-4 text-accent" />
-                  Tudo do Legado
+                  Tudo do Legado +
                 </li>
                 <li className="flex items-center gap-2 text-sm text-muted-foreground">
                   <CheckCircle2 className="w-4 h-4 text-accent" />
@@ -402,19 +402,19 @@ export default function LandingPage() {
             </div>
             <div>
               <h4 className="font-semibold text-foreground mb-4">Contato</h4>
-              <a href="#" className="text-muted-foreground hover:text-foreground transition text-sm block">Suporte</a>
+              <a href="mailto:contato@exemplo.com" className="text-muted-foreground hover:text-foreground transition text-sm block mt-2">contato@exemplo.com</a>
             </div>
             <div>
               <h4 className="font-semibold text-foreground mb-4">Legal</h4>
-              <a href="#" className="text-muted-foreground hover:text-foreground transition text-sm block">Termos de Serviço</a>
+              <a onClick={() => setLocation("/terms")} className="text-muted-foreground hover:text-foreground transition text-sm block cursor-pointer">Termos de Serviço</a>
             </div>
             <div>
               <h4 className="font-semibold text-foreground mb-4">Privacidade</h4>
-              <a href="#" className="text-muted-foreground hover:text-foreground transition text-sm block">Política de Privacidade</a>
+              <a onClick={() => setLocation("/privacy")} className="text-muted-foreground hover:text-foreground transition text-sm block cursor-pointer">Política de Privacidade</a>
             </div>
           </div>
           <div className="border-t border-border pt-8 text-center text-muted-foreground text-sm">
-            <p>&copy; 2025 Eternal Legacy. Todos os direitos reservados.</p>
+            <p>&copy; 2026 Eternal Legacy. Todos os direitos reservados.</p>
           </div>
         </div>
       </footer>
