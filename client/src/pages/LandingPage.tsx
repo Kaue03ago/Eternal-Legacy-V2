@@ -1,6 +1,46 @@
 import { Button } from "@/components/ui/button";
+import { createElement, useEffect } from "react";
 import { useLocation } from "wouter";
 import { Lock, Cloud, Key, Shield, Smartphone, CheckCircle2, Heart, Users, Zap } from "lucide-react";
+
+const WISTIA_MEDIA_ID = "kzgcrydrso";
+
+function WistiaVideo() {
+  useEffect(() => {
+    const scripts = [
+      { src: "https://fast.wistia.com/player.js", type: "text/javascript" },
+      { src: `https://fast.wistia.com/embed/${WISTIA_MEDIA_ID}.js`, type: "module" },
+    ];
+
+    scripts.forEach(({ src, type }) => {
+      if (document.querySelector(`script[src="${src}"]`)) return;
+
+      const script = document.createElement("script");
+      script.src = src;
+      script.async = true;
+      script.type = type;
+      document.head.appendChild(script);
+    });
+  }, []);
+
+  return (
+    <div className="mx-auto w-full max-w-[360px] overflow-hidden rounded-lg border border-border bg-card shadow-sm">
+      <style>{`
+        wistia-player[media-id='${WISTIA_MEDIA_ID}']:not(:defined) {
+          background: center / contain no-repeat url('https://fast.wistia.com/embed/medias/${WISTIA_MEDIA_ID}/swatch');
+          display: block;
+          filter: blur(5px);
+          padding-top: 177.78%;
+        }
+
+      `}</style>
+      {createElement("wistia-player", {
+        "media-id": WISTIA_MEDIA_ID,
+        aspect: "0.5625",
+      })}
+    </div>
+  );
+}
 
 export default function LandingPage() {
   const [, setLocation] = useLocation();
@@ -53,6 +93,21 @@ export default function LandingPage() {
           >
             Crie seu Cofre
           </Button>
+        </div>
+      </section>
+
+      {/* Introduction Video */}
+      <section className="border-b border-border bg-background py-16 md:py-20">
+        <div className="container mx-auto px-4 text-center">
+          <div className="mx-auto mb-10 max-w-2xl">
+            <h2 className="mb-4 text-3xl font-bold text-foreground md:text-4xl">
+              Conheça o Eternal Legacy
+            </h2>
+            <p className="text-lg leading-relaxed text-muted-foreground">
+              Entenda como preservar suas memórias e mensagens para quem realmente importa.
+            </p>
+          </div>
+          <WistiaVideo />
         </div>
       </section>
 
@@ -402,7 +457,7 @@ export default function LandingPage() {
             </div>
             <div>
               <h4 className="font-semibold text-foreground mb-4">Contato</h4>
-              <a href="mailto:contato@exemplo.com" className="text-muted-foreground hover:text-foreground transition text-sm block mt-2">contato@exemplo.com</a>
+              <a href="mailto:contato@eternalegacy.pro" className="text-muted-foreground hover:text-foreground transition text-sm block mt-2">contato@eternalegacy.pro</a>
             </div>
             <div>
               <h4 className="font-semibold text-foreground mb-4">Legal</h4>
