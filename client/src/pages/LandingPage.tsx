@@ -3,7 +3,7 @@ import { createElement, useEffect } from "react";
 import { useLocation } from "wouter";
 import { Lock, Cloud, Key, Shield, Smartphone, CheckCircle2, Heart, Users, Zap } from "lucide-react";
 
-const WISTIA_MEDIA_ID = "kzgcrydrso";
+const WISTIA_MEDIA_ID = "0ghob7kkoe";
 
 function WistiaVideo() {
   useEffect(() => {
@@ -24,19 +24,19 @@ function WistiaVideo() {
   }, []);
 
   return (
-    <div className="mx-auto w-full max-w-[360px] overflow-hidden rounded-lg border border-border bg-card shadow-sm">
+    <div className="mx-auto w-full max-w-4xl overflow-hidden rounded-lg border border-border bg-card shadow-sm">
       <style>{`
         wistia-player[media-id='${WISTIA_MEDIA_ID}']:not(:defined) {
           background: center / contain no-repeat url('https://fast.wistia.com/embed/medias/${WISTIA_MEDIA_ID}/swatch');
           display: block;
           filter: blur(5px);
-          padding-top: 177.78%;
+          padding-top: 56.25%;
         }
 
       `}</style>
       {createElement("wistia-player", {
         "media-id": WISTIA_MEDIA_ID,
-        aspect: "0.5625",
+        aspect: "1.7777777777777777",
       })}
     </div>
   );
