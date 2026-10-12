@@ -2,18 +2,52 @@ import { Button } from "@/components/ui/button";
 import { useLocation } from "wouter";
 import { useEffect, useState } from "react";
 import { CheckCircle2, ArrowRight } from "lucide-react";
+import {
+  BILLING_CYCLE,
+  formatPrice,
+  isPlanName,
+  PLAN_DISCOUNT_PERCENT,
+  PLAN_PRICING,
+  type PlanName,
+} from "@/lib/pricing";
+
+type PaymentPlanData = {
+  fullName: string;
+  email: string;
+  selectedPlan: PlanName;
+  billingCycle: typeof BILLING_CYCLE;
+};
 
 export default function PaymentPage() {
   const [, setLocation] = useLocation();
-  const [planData, setPlanData] = useState<any>(null);
+  const [planData, setPlanData] = useState<PaymentPlanData | null>(null);
 
   useEffect(() => {
     const raw = sessionStorage.getItem("leadDraft");
-    if (raw) {
-      const data = JSON.parse(raw);
-      setPlanData(data);
+    if (!raw) {
+      setLocation("/signup/step1");
+      return;
     }
-  }, []);
+
+    try {
+      const data = JSON.parse(raw);
+      if (!data || typeof data.fullName !== "string" || typeof data.email !== "string") {
+        setLocation("/signup/step1");
+        return;
+      }
+      if (!isPlanName(data.selectedPlan)) {
+        setLocation("/pricing");
+        return;
+      }
+
+      // Atualiza também cadastros iniciados antes da oferta exclusivamente anual.
+      const annualData = { ...data, billingCycle: BILLING_CYCLE };
+      sessionStorage.setItem("leadDraft", JSON.stringify(annualData));
+      setPlanData(annualData);
+    } catch {
+      setLocation("/signup/step1");
+    }
+  }, [setLocation]);
 
   const handleConfirmPayment = async () => {
     const triggerUrl = import.meta.env.VITE_LEAD_TRIGGER_URL as string | undefined;
@@ -22,7 +56,7 @@ export default function PaymentPage() {
       fullName: planData?.fullName,
       email: planData?.email,
       selectedPlan: planData?.selectedPlan,
-      billingCycle: planData?.billingCycle,
+      billingCycle: BILLING_CYCLE,
       createdAt: new Date().toISOString(),
       source: "mvp_payment_click",
     };
@@ -50,17 +84,8 @@ export default function PaymentPage() {
     );
   }
 
-  const planPrices: any = {
-    Essência: { monthly: 24.90, annual: 249 },
-    Legado: { monthly: 39.90, annual: 399 },
-    Eternidade: { monthly: 69.90, annual: 699 },
-  };
-
-  const selectedPrice = planData.billingCycle === "monthly" 
-    ? planPrices[planData.selectedPlan]?.monthly 
-    : planPrices[planData.selectedPlan]?.annual;
-
-  const billingPeriod = planData.billingCycle === "monthly" ? "por mês" : "por ano";
+  const selectedPrice = PLAN_PRICING[planData.selectedPlan];
+  const discount = selectedPrice.originalAnnualPrice - selectedPrice.annualPrice;
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -113,7 +138,7 @@ export default function PaymentPage() {
                 <div className="text-right">
                   <p className="text-sm text-muted-foreground mb-1">Tipo de Faturamento</p>
                   <p className="text-lg font-semibold text-accent capitalize">
-                    {planData.billingCycle === "monthly" ? "Mensal" : "Anual"}
+                    Anual
                   </p>
                 </div>
               </div>
@@ -146,13 +171,21 @@ export default function PaymentPage() {
 
               {/* Price Summary */}
               <div className="space-y-3">
+                <div className="flex justify-between gap-4">
+                  <span className="text-sm text-muted-foreground">Valor original</span>
+                  <s className="text-sm text-muted-foreground whitespace-nowrap">{formatPrice(selectedPrice.originalAnnualPrice)}</s>
+                </div>
+                <div className="flex justify-between gap-4">
+                  <span className="text-sm text-muted-foreground">Desconto ({PLAN_DISCOUNT_PERCENT}%)</span>
+                  <span className="text-sm text-accent whitespace-nowrap">−{formatPrice(discount)}</span>
+                </div>
                 <div className="flex justify-between">
                   <span className="text-sm text-muted-foreground">Valor do Plano</span>
-                  <span className="text-sm text-foreground">R$ {selectedPrice?.toFixed(2)}</span>
+                  <span className="text-sm text-foreground">{formatPrice(selectedPrice.annualPrice)}</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-sm text-muted-foreground">Período</span>
-                  <span className="text-sm text-foreground">{billingPeriod}</span>
+                  <span className="text-sm text-foreground">Anual</span>
                 </div>
 
                 {/* Divider */}
@@ -162,8 +195,8 @@ export default function PaymentPage() {
                 <div className="flex justify-between items-center">
                   <span className="font-semibold text-foreground">Total</span>
                   <div className="text-right">
-                    <p className="text-2xl font-bold text-accent">R$ {selectedPrice?.toFixed(2)}</p>
-                    <p className="text-xs text-muted-foreground">{billingPeriod}</p>
+                    <p className="text-2xl font-bold text-accent">{formatPrice(selectedPrice.annualPrice)}</p>
+                    <p className="text-xs text-muted-foreground">por ano</p>
                   </div>
                 </div>
               </div>

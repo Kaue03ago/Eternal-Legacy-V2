@@ -11,7 +11,7 @@ Este projeto foi feito para **validar interesse de mercado e UX** com o mínimo 
 
 * Landing page com proposta do produto, seções e CTA “Crie seu Cofre”
 * Fluxo de cadastro em etapas (Signup Step 1 e Step 2)
-* Página de planos (Pricing) com toggle Mensal/Anual e seleção de plano
+* Página de planos (Pricing) com seleção de plano e faturamento exclusivamente anual
 * Página de pagamento (mock) que dispara o **lead capture**
 * Tela de “alta demanda / waitlist”
 * Seção “Quem Somos” com botão “Fale Conosco” (Google Forms + envio automático por e-mail via Apps Script)
@@ -113,7 +113,7 @@ Exemplo de conteúdo esperado em `leadDraft`:
   "fullName": "João Silva",
   "email": "joao@email.com",
   "selectedPlan": "Legado",
-  "billingCycle": "monthly"
+  "billingCycle": "annual"
 }
 ```
 
@@ -135,6 +135,22 @@ Campos gravados (exemplo):
 * `selectedPlan`
 * `billingCycle`
 * `source` (ex.: `"mvp_payment_click"`)
+
+### Planos anuais
+
+| Plano | Valor original por ano | Valor promocional por ano | Desconto anunciado |
+| --- | --- | --- | --- |
+| Essência | R$ 298,80 | R$ 239,00 | 20% |
+| Legado | R$ 478,80 | R$ 383,00 | 20% |
+| Eternidade | R$ 838,80 | R$ 671,00 | 20% |
+
+Os valores ficam centralizados em `client/src/lib/pricing.ts`, em centavos, e são
+usados na landing page, na seleção de planos e no resumo de pagamento. Os totais
+promocionais são os valores comerciais definidos acima; não são recalculados a
+partir do percentual anunciado.
+
+O front salva e envia `billingCycle: "annual"`. Ao abrir o pagamento, cadastros
+antigos na sessão também passam a usar esse ciclo e os preços vigentes.
 
 > Observação: `leadId` como PK permite múltiplas tentativas do mesmo e-mail (histórico). Tratamento anti-duplicidade pode ser adicionado depois na Lambda.
 

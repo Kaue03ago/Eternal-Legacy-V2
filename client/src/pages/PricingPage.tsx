@@ -1,4 +1,6 @@
 import { Button } from "@/components/ui/button";
+import AnnualPlanPrice from "@/components/AnnualPlanPrice";
+import { BILLING_CYCLE, type PlanName } from "@/lib/pricing";
 import { useLocation } from "wouter";
 import { useState } from "react";
 import { Check } from "lucide-react";
@@ -7,8 +9,6 @@ const plans = [
   {
     name: "Essência",
     description: "Para quem quer começar simples",
-    monthlyPrice: 24.90,
-    annualPrice: 249,
     features: [
       "Cofre digital criptografado",
       "Até 10 mensagens (áudios e vídeos)",
@@ -22,8 +22,6 @@ const plans = [
   {
     name: "Legado",
     description: "Para quem quer mais conexão",
-    monthlyPrice: 39.90,
-    annualPrice: 399,
     features: [
       "Tudo do Essência +",
       "Roteiros emocionais guiados",
@@ -37,8 +35,6 @@ const plans = [
   {
     name: "Eternidade",
     description: "Para quem quer o máximo",
-    monthlyPrice: 69.90,
-    annualPrice: 699,
     features: [
       "Tudo do Legado +",
       "Documentário digital completo (até 20 minutos)",
@@ -49,20 +45,13 @@ const plans = [
     ],
     highlighted: false,
   },
-];
-
-const addOns = [
-  { name: "+10 GB adicionais", price: 9.90 },
-  { name: "Destinatário extra", price: 4.90 },
-  { name: "Guardião extra", price: 6.90 }
-];
+] as const;
 
 export default function PricingPage() {
   const [, setLocation] = useLocation();
-  const [selectedPlan, setSelectedPlan] = useState("Legado");
-  const [billingCycle, setBillingCycle] = useState<"monthly" | "annual">("monthly");
+  const [selectedPlan, setSelectedPlan] = useState<PlanName>("Legado");
 
-  const handleSelectPlan = (planName: string) => {
+  const handleSelectPlan = (planName: PlanName) => {
     setSelectedPlan(planName);
   };
 
@@ -81,7 +70,7 @@ export default function PricingPage() {
     const updatedDraft = {
       ...draft,
       selectedPlan,
-      billingCycle,
+      billingCycle: BILLING_CYCLE,
       updatedAt: new Date().toISOString(),
     };
 
@@ -90,9 +79,6 @@ export default function PricingPage() {
     // Go to payment page
     setLocation("/payment");
   };
-
-  const selectedPlanData = plans.find(p => p.name === selectedPlan);
-  const selectedPrice = billingCycle === "monthly" ? selectedPlanData?.monthlyPrice : selectedPlanData?.annualPrice;
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -131,30 +117,11 @@ export default function PricingPage() {
           <p className="text-lg text-muted-foreground">Cada plano foi pensado para diferentes necessidades. Escolha o que melhor se encaixa na sua história.</p>
         </div>
 
-        {/* Billing Toggle */}
+        {/* Annual Billing */}
         <div className="flex justify-center mb-12">
-          <div className="bg-card border border-border rounded-lg p-1 flex gap-2">
-            <button
-              onClick={() => setBillingCycle("monthly")}
-              className={`px-6 py-2 rounded transition ${
-                billingCycle === "monthly"
-                  ? "bg-accent text-accent-foreground"
-                  : "text-muted-foreground hover:text-foreground"
-              }`}
-            >
-              Mensal
-            </button>
-            <button
-              onClick={() => setBillingCycle("annual")}
-              className={`px-6 py-2 rounded transition ${
-                billingCycle === "annual"
-                  ? "bg-accent text-accent-foreground"
-                  : "text-muted-foreground hover:text-foreground"
-              }`}
-            >
-              Anual (Economize 2 meses)
-            </button>
-          </div>
+          <p className="bg-card border border-border rounded-lg px-6 py-3 text-center text-accent">
+            Planos exclusivamente anuais
+          </p>
         </div>
 
         {/* Pricing Cards */}
@@ -180,16 +147,7 @@ export default function PricingPage() {
                 <p className="text-sm text-muted-foreground mb-4">{plan.description}</p>
 
                 {/* Price */}
-                <div className="mb-6">
-                  <div className="flex items-baseline gap-2 mb-2">
-                    <span className="text-3xl font-bold text-accent">
-                      R$ {billingCycle === "monthly" ? plan.monthlyPrice.toFixed(2) : plan.annualPrice.toFixed(0)}
-                    </span>
-                    <span className="text-muted-foreground text-sm">
-                      {billingCycle === "monthly" ? "/mês" : "/ano"}
-                    </span>
-                  </div>
-                </div>
+                <AnnualPlanPrice planName={plan.name} />
 
                 {/* Features */}
                 <ul className="space-y-3 mb-6">

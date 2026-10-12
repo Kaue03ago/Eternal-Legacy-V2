@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import AnnualPlanPrice from "@/components/AnnualPlanPrice";
 import { createElement, useEffect } from "react";
 import { useLocation } from "wouter";
 import { Lock, Cloud, Key, Shield, Smartphone, CheckCircle2, Heart, Users, Zap } from "lucide-react";
@@ -273,16 +274,14 @@ export default function LandingPage() {
       {/* Pricing Section */}
       <section id="planos" className="py-20 border-b border-border bg-background">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 text-foreground">Escolha Seu Plano de Legado</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-foreground">Escolha Seu Plano de Legado</h2>
+          <p className="text-center text-muted-foreground mb-16">Planos exclusivamente anuais.</p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
             {/* Essência Plan */}
             <div className="bg-card border border-border rounded-lg p-8 hover:border-accent/50 transition flex flex-col">
               <h3 className="text-2xl font-bold text-foreground mb-2">Essência</h3>
               <p className="text-muted-foreground text-sm mb-6">Para quem quer começar simples</p>
-              <div className="mb-6">
-                <p className="text-3xl font-bold text-accent">R$ 24,90</p>
-                <p className="text-muted-foreground text-sm">por mês</p>
-              </div>
+              <AnnualPlanPrice planName="Essência" />
               <ul className="space-y-3 mb-8 flex-grow">
                 <li className="flex items-center gap-2 text-sm text-muted-foreground">
                   <CheckCircle2 className="w-4 h-4 text-accent" />
@@ -315,10 +314,7 @@ export default function LandingPage() {
               <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-accent text-accent-foreground px-4 py-1 rounded-full text-xs font-semibold">Mais Popular</div>
               <h3 className="text-2xl font-bold text-foreground mb-2">Legado</h3>
               <p className="text-muted-foreground text-sm mb-6">Para quem quer mais conexão</p>
-              <div className="mb-6">
-                <p className="text-3xl font-bold text-accent">R$ 39,90</p>
-                <p className="text-muted-foreground text-sm">por mês</p>
-              </div>
+              <AnnualPlanPrice planName="Legado" />
               <ul className="space-y-3 mb-8 flex-grow">
                 <li className="flex items-center gap-2 text-sm text-muted-foreground">
                   <CheckCircle2 className="w-4 h-4 text-accent" />
@@ -354,10 +350,7 @@ export default function LandingPage() {
             <div className="bg-card border border-border rounded-lg p-8 hover:border-accent/50 transition flex flex-col">
               <h3 className="text-2xl font-bold text-foreground mb-2">Eternidade</h3>
               <p className="text-muted-foreground text-sm mb-6">Para quem quer o máximo</p>
-              <div className="mb-6">
-                <p className="text-3xl font-bold text-accent">R$ 69,90</p>
-                <p className="text-muted-foreground text-sm">por mês</p>
-              </div>
+              <AnnualPlanPrice planName="Eternidade" />
               <ul className="space-y-3 mb-8 flex-grow">
                 <li className="flex items-center gap-2 text-sm text-muted-foreground">
                   <CheckCircle2 className="w-4 h-4 text-accent" />

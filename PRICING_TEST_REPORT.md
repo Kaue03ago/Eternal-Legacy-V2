@@ -1,63 +1,46 @@
-# Relatório de Teste - Padronização de Preços
+# Validação dos planos anuais
 
-## Data do Teste
-07 de janeiro de 2026
+Atualização: 7 de outubro de 2026.
 
-## Resumo
-Teste completo do fluxo de cadastro e verificação de preços em todas as páginas.
+Este documento substitui o relatório da oferta anterior.
 
-## Resultados
+## Valores esperados
 
-### ✅ Landing Page - Seção de Preços
-- **Essência**: R$ 24,90/mês ✓
-- **Legado**: R$ 39,90/mês ✓ (Mais Popular)
-- **Eternidade**: R$ 69,90/mês ✓
-- **Disclaimer**: "Acesso vitalício refere-se ao acesso contínuo dos destinatários ao conteúdo enquanto o serviço estiver ativo e a conta estiver regular." ✓
+| Plano | De (por ano) | Por (por ano) | Desconto anunciado |
+| --- | --- | --- | --- |
+| Essência | R$ 298,80 | R$ 239,00 | 20% |
+| Legado | R$ 478,80 | R$ 383,00 | 20% |
+| Eternidade | R$ 838,80 | R$ 671,00 | 20% |
 
-### ✅ Página de Preços (PricingPage) - Faturamento Mensal
-- **Essência**: R$ 24,90/mês ✓
-- **Legado**: R$ 39,90/mês ✓ (Mais Popular)
-- **Eternidade**: R$ 69,90/mês ✓
+Os totais promocionais são fixos conforme a definição comercial. A diferença
+entre o preço original e o promocional é calculada em centavos para o resumo.
 
-### ✅ Página de Preços (PricingPage) - Faturamento Anual
-- **Essência**: R$ 249/ano ✓
-- **Legado**: R$ 399/ano ✓ (Mais Popular)
-- **Eternidade**: R$ 699/ano ✓
-- **Badge**: "Economize 2 meses" ✓
+## Escopo
 
-### ✅ Seção de Add-ons/Extras
-- **+10 GB adicionais**: R$ 9,90/mês ✓
-- **Destinatário extra**: R$ 4,90/mês ✓
-- **Guardião extra**: R$ 6,90/mês ✓
+- Landing page e seleção de planos usam o mesmo componente de preço anual.
+- Pagamento usa a mesma tabela, com preço original, desconto e total anual.
+- O ciclo salvo em leadDraft e enviado à Lambda é sempre annual.
+- Sessões antigas são atualizadas ao abrir o pagamento.
+- A lista de preços de adicionais sem uso foi removida.
+- O código da Lambda não está incluído neste repositório.
 
-### ✅ Disclaimer de Acesso Vitalício
-Texto completo exibido:
-"* Acesso vitalício refere-se ao acesso contínuo dos destinatários ao conteúdo enquanto o serviço estiver ativo e a conta estiver regular."
+## Verificações
 
-### ✅ Fluxo de Cadastro
-1. **Etapa 1** (Detalhes da Conta): ✓ Funcionando
-2. **Etapa 2** (Segurança do Cofre): ✓ Funcionando
-3. **Etapa 3** (Seleção de Planos): ✓ Funcionando com novos preços
-4. **Etapa 4** (Confirmação): Não testada (fluxo simulado)
+- Checagem TypeScript (`pnpm check`): aprovada.
+- Build de produção (`pnpm build`): aprovado; saída estática em `dist/public`.
+- Chrome em desktop: os três cartões exibem os valores originais, promocionais,
+  período anual e desconto de 20% na landing page e na seleção de planos.
+- Fluxo completo de cadastro até a lista de interesse: aprovado para os três planos.
+- Resumo de pagamento: plano, preço original, economia e total anual corretos.
+- Sessões antigas: os três planos passam ao ciclo anual; a recarga mantém os valores.
+- Captura do lead: seis requisições interceptadas localmente confirmaram o plano e
+  `billingCycle: "annual"`, sem senha ou dados de guardiões.
+- Tela móvel de 390 px: preços legíveis e dentro dos cartões; revisão visual aprovada.
+- Pagamento com sessão ausente, JSON inválido ou plano desconhecido: redirecionamento
+  para cadastro ou seleção de planos, sem exibição de preço indefinido.
+- Nenhuma exceção JavaScript durante a validação.
+- Busca no código e na documentação: sem valores antigos ou opção de cobrança mensal.
 
-## Conclusões
-
-✅ **Todos os preços foram padronizados com sucesso**
-✅ **Opção de faturamento anual implementada corretamente**
-✅ **Add-ons/Extras visíveis e com preços corretos**
-✅ **Disclaimer de acesso vitalício adicionado em ambas as páginas**
-✅ **Fluxo de cadastro funcionando normalmente**
-
-## Observações
-
-- A Landing Page exibe os preços de forma clara e consistente
-- A PricingPage permite alternar entre faturamento mensal e anual
-- Todos os preços correspondem à estrutura solicitada
-- O design mantém a consistência visual com tema Dark Mode
-- A navegação entre as páginas funciona corretamente
-
-## Status Final
-
-**PRONTO PARA PRODUÇÃO** ✓
-
-O MVP está pronto para ser entregue ao usuário com todos os preços padronizados e a estrutura de planos completa.
+Os testes do navegador usaram o build de produção servido localmente, com todas as
+requisições externas interceptadas. Nenhum lead real ou e-mail foi enviado. A Lambda,
+o DynamoDB e a publicação em S3/CloudFront não foram alterados nem validados em produção.
